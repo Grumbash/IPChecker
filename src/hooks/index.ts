@@ -1,0 +1,1 @@
+export {useGetIPs} from './useGetIPs';
