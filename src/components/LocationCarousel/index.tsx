@@ -1,6 +1,8 @@
 import React from 'react';
 import {Image, Pressable, StyleSheet} from 'react-native';
 import {Layout, ViewPager} from '@ui-kitten/components';
+import {useNavigation} from '@react-navigation/native';
+import {DetailsScreenNavigationProps} from '../../navigation';
 
 const data = [
   {
@@ -23,9 +25,10 @@ const data = [
 
 export const LocationCarousel = (): React.ReactElement => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const navigation = useNavigation<DetailsScreenNavigationProps>();
 
   const handlePress = (ip: string) => () => {
-    console.log('ip', ip);
+    navigation.navigate('Details', {ip, image: data[selectedIndex].image});
   };
 
   return (

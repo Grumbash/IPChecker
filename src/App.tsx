@@ -8,9 +8,9 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import {Details, Home, Transactions} from './screens';
 import {queryClient} from './api';
-import {BottomTabBar} from './navigation';
+import {BottomTabBar, RootTabsParamList} from './navigation';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabsParamList>();
 
 function App() {
   return (
