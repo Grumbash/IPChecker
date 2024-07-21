@@ -1,27 +1,37 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {QueryClientProvider} from '@tanstack/react-query';
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
-import {Details, Home} from './screens';
+import {Details, Home, Transactions} from './screens';
 import {queryClient} from './api';
+import {BottomTabBar} from './navigation';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{title: 'Dashboard'}}
-          />
-          <Stack.Screen name="Details" component={Details} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </QueryClientProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <QueryClientProvider client={queryClient}>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <NavigationContainer>
+            <Tab.Navigator initialRouteName="Home" tabBar={BottomTabBar}>
+              <Tab.Screen
+                name="Home"
+                component={Home}
+                options={{title: 'Dashboard'}}
+              />
+              <Tab.Screen name="Details" component={Details} />
+              <Tab.Screen name="Transactions" component={Transactions} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </ApplicationProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 

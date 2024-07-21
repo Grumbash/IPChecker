@@ -1,21 +1,17 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useState} from 'react';
-import {Info, IPForm, Loader} from '../../components';
-import {useGetIPs} from '../../hooks';
+import {StyleSheet} from 'react-native';
+import React from 'react';
+import {Info, IPForm, LocationCarousel} from '../../components';
+import {useHome} from './useHome';
+import {Layout, Spinner} from '@ui-kitten/components';
 
 export function Home() {
-  const [ip, setIp] = useState('');
-  const {isLoading, data} = useGetIPs(ip);
-
-  const onSubmit = ({ipAddress}: {ipAddress: string}) => {
-    setIp(ipAddress);
-  };
+  const {data, onSubmit, isLoading} = useHome();
 
   return (
-    <View style={styles.container}>
+    <Layout style={styles.container}>
       <IPForm onSubmit={onSubmit} />
       {isLoading ? (
-        <Loader />
+        <Spinner />
       ) : (
         <>
           <Info title="IP Address" value={data.ip} />
@@ -27,10 +23,11 @@ export function Home() {
           <Info title="ISP" value={data.connection.isp} />
         </>
       )}
-    </View>
+      <LocationCarousel />
+    </Layout>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  container: {flex: 1},
 });

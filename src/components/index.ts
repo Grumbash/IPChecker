@@ -1,3 +1,3 @@
 export {Info} from './Info';
-export {Loader} from './Loader';
 export {IPForm} from './IPForm';
+export {LocationCarousel} from './LocationCarousel';
