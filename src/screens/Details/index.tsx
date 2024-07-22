@@ -1,8 +1,9 @@
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {InfoSection} from '../../components/InfoSection';
-import {useGetIPs} from '../../hooks';
+import React from 'react';
 import {Spinner} from '@ui-kitten/components';
+
+import {InfoSection} from '../../components/InfoSection';
+import {useDetails} from './useDetails';
 
 type DetailsProps = {
   route: {
@@ -14,15 +15,10 @@ type DetailsProps = {
 };
 
 export function Details({route}: DetailsProps) {
-  const [lastParams, setLastParams] =
-    useState<DetailsProps['route']['params']>();
-  const {isLoading, data} = useGetIPs(lastParams?.ip);
-
-  useEffect(() => {
-    if (route.params?.image) {
-      setLastParams(route.params);
-    }
-  }, [route.params]);
+  const {lastParams, isLoading, data} = useDetails({
+    ip: route?.params?.ip,
+    image: route?.params?.image,
+  });
 
   return (
     <View style={styles.container}>
