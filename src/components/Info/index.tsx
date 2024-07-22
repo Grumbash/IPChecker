@@ -1,5 +1,6 @@
+import {Layout, Text} from '@ui-kitten/components';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 type InfoProps = {
   title: string;
@@ -8,10 +9,10 @@ type InfoProps = {
 
 export function Info({title, value}: InfoProps) {
   return (
-    <View style={styles.container}>
-      <Text>{title}</Text>
-      <Text>{value}</Text>
-    </View>
+    <Layout style={styles.container} level="2">
+      <Text category="label">{title}</Text>
+      <Text category="p2">{value}</Text>
+    </Layout>
   );
 }
 

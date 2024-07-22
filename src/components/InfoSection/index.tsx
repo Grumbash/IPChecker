@@ -19,7 +19,7 @@ export function InfoSection({
   ISP,
 }: InfoSectionProps) {
   return (
-    <Layout style={styles.container}>
+    <Layout style={styles.container} level="2">
       <Info title="IP Address" value={ip} />
       <Info title="Location" value={`${region}, ${countryCode}`} />
       <Info title="Timezone" value={`UTC ${timezoneUtc}`} />
@@ -29,5 +29,13 @@ export function InfoSection({
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, width: '100%', padding: 16},
+  container: {
+    flex: 1,
+    width: '100%',
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 8,
+    flexWrap: 'wrap',
+  },
 });

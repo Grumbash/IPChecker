@@ -1,6 +1,7 @@
 import {Controller, useForm} from 'react-hook-form';
-import {Button, Text, TextInput, View} from 'react-native';
 import React from 'react';
+import {Button, Input, Layout, Text} from '@ui-kitten/components';
+import {StyleSheet} from 'react-native';
 
 type FormData = {
   ipAddress: string;
@@ -25,14 +26,14 @@ export function IPForm({onSubmit}: IPFormProps) {
   });
 
   return (
-    <View>
+    <Layout style={styles.container}>
       <Controller
         control={control}
         rules={{
           pattern: IPPattern,
         }}
         render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
+          <Input
             placeholder="IP Address"
             onBlur={onBlur}
             onChangeText={onChange}
@@ -43,7 +44,11 @@ export function IPForm({onSubmit}: IPFormProps) {
         name="ipAddress"
       />
       {errors.ipAddress && <Text>This field must match to IP v4 format</Text>}
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-    </View>
+      <Button onPress={handleSubmit(onSubmit)}>Submit</Button>
+    </Layout>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {marginVertical: 16, gap: 8},
+});

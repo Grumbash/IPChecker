@@ -13,9 +13,9 @@ export function useDetails(props: UseDetailsProps) {
 
   useEffect(() => {
     if (props.image) {
-      setLastParams(props);
+      setLastParams({ip: props?.ip, image: props?.image});
     }
-  }, [props]);
+  }, [props?.image, props?.ip]);
 
   return {
     lastParams,

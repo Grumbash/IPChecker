@@ -2,7 +2,7 @@ import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Spinner} from '@ui-kitten/components';
 
-import {InfoSection} from '../../components/InfoSection';
+import {InfoSection} from '../../components';
 import {useDetails} from './useDetails';
 
 type DetailsProps = {
